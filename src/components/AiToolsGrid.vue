@@ -48,6 +48,13 @@ const tools = [
     description: '百度智能体与对话助手',
     icon: '🔵',
     color: '#2962ff'
+  },
+  {
+    name: 'Kimi',
+    url: 'https://kimi.com',
+    description: '月之暗面 Kimi 智能助手',
+    icon: '🌙',
+    color: '#00d3ff'
   }
 ]
 </script>
