@@ -4,6 +4,9 @@ import AiToolsGrid from './components/AiToolsGrid.vue'
 
 <template>
   <header>
+    <nav class="top-nav">
+      <a class="nav-link" href="/outline_tool/index.html">Chrome 插件：AI Chat Outline 下载</a>
+    </nav>
     <div class="logo-container">
       <h1>AI Helper 360</h1>
       <p class="subtitle">您的 AI 工具一站式导航</p>
@@ -21,9 +24,41 @@ import AiToolsGrid from './components/AiToolsGrid.vue'
 
 <style scoped>
 header {
-  padding: 4rem 0 2rem;
+  padding: 2rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
+.top-nav {
+  position: absolute;
+  top: 0.75rem;
+  right: 2rem;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background: #646cff;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 16px rgba(100, 108, 255, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(100, 108, 255, 0.35);
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .logo-container h1 {
   font-size: 3.5rem;
   font-weight: 700;
@@ -50,6 +85,25 @@ footer {
 @media (prefers-color-scheme: light) {
   .subtitle {
     color: #555;
+  }
+}
+
+@media (max-width: 640px) {
+  header {
+    padding: 0.8rem 0 1.6rem;
+  }
+  .top-nav {
+    position: static;
+    align-self: center;
+    margin: 0.4rem 0 0.6rem;
+  }
+  .nav-link {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.85rem;
+  }
+  .logo-container h1 {
+    font-size: 2.8rem;
+    line-height: 1.1;
   }
 }
 </style>
