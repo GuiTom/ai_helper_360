@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-const categories = ['全部', '智能对话', 'AI Agent', '文生图', '文生音乐', '视频生成', '编程']
+const categories = ['全部', '智能对话', 'AI Agent', '文生图', '文生音乐', '视频生成', '编程', 'UI 设计']
 const activeCategory = ref('全部')
 
 const tools = [
@@ -452,6 +452,30 @@ const tools = [
     scenarios: '终端重度用户、全栈开发'
   }
 ]
+
+// UI 设计
+tools.push(
+  {
+    name: 'UI UX Pro Max',
+    url: 'https://ui-ux-pro-max-skill.nextlevelbuilder.io/',
+    description: '面向 Claude Code等AI IDE 的设计智能，UI 样式与色彩库',
+    icon: '🎨',
+    color: '#ff6b6b',
+    category: 'UI 设计',
+    features: ['设计智能', '样式库', '配色推荐'],
+    scenarios: '生成高质量界面、风格选型、设计规范'
+  },
+  {
+    name: 'Stitch',
+    url: 'https://stitch.withgoogle.com/',
+    description: 'Google 设计系统与组件方案',
+    icon: '🧵',
+    color: '#1d9bf0',
+    category: 'UI 设计',
+    features: ['设计系统', '组件库', '最佳实践'],
+    scenarios: '快速搭建一致性 UI'
+  }
+)
 
 const filteredTools = computed(() => {
   if (activeCategory.value === '全部') {
