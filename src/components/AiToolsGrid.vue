@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-const categories = ['全部', '智能对话', 'AI Agent', '文生图', '文生音乐', '视频生成']
+const categories = ['全部', '智能对话', 'AI Agent', '文生图', '文生音乐', '视频生成', '编程']
 const activeCategory = ref('全部')
 
 const tools = [
@@ -85,6 +85,16 @@ const tools = [
     category: '智能对话',
     features: ['超长无损记忆', '联网搜索', '文件解读'],
     scenarios: '长篇财报分析、法律合同审查、资料整理'
+  },
+  {
+    name: 'Grok',
+    url: 'https://grok.com',
+    description: 'xAI 多模态智能助手',
+    icon: '⚡️',
+    color: '#1d9bf0',
+    category: '智能对话',
+    features: ['多模态', '联网搜索', '编程辅助'],
+    scenarios: '日常问答、图文理解、代码开发'
   },
 
   {
@@ -251,6 +261,195 @@ const tools = [
     category: '视频生成',
     features: ['物理模拟', '写实风格', '快速迭代'],
     scenarios: '生活化场景模拟、写实短片、产品展示'
+  },
+
+  // 编程
+  {
+    name: 'Claude Code',
+    url: 'https://www.anthropic.com/claude-code',
+    description: '终端式AI交互，自动化脚本与任务',
+    icon: '🟣',
+    color: '#d97757',
+    category: '编程',
+    type: '终端工具',
+    features: ['项目构建', '脚本生成', '自动化任务'],
+    scenarios: '命令行爱好者、自动化任务开发'
+  },
+  {
+    name: 'Antigravity',
+    url: 'https://antigravity.google/',
+    description: '谷歌多Agent编码，跨表面并行任务编排',
+    icon: '🛰️',
+    color: '#34a853',
+    category: '编程',
+    type: '独立IDE',
+    features: ['双界面', '多模型支持', '并行编排'],
+    scenarios: '大项目/多任务并行、Google生态'
+  },
+  {
+    name: 'Trae.ai',
+    url: 'https://trae.ai',
+    description: '免费AI IDE，对话式改功能与API集成',
+    icon: '�',
+    color: '#4080ff',
+    category: '编程',
+    type: '独立IDE',
+    features: ['对话式改代码', 'API集成', '中文友好'],
+    scenarios: '国内开发者、快速迭代项目'
+  },
+  {
+    name: 'Windsurf',
+    url: 'https://windsurf.ai',
+    description: 'Cascade Agent，多智能体协作与内联编辑',
+    icon: '🌊',
+    color: '#00bcd4',
+    category: '编程',
+    type: '独立IDE',
+    features: ['智能补全', '内联编辑', '多智能体协作'],
+    scenarios: '复杂项目、架构设计'
+  },
+  {
+    name: 'Cursor',
+    url: 'https://www.cursor.sh',
+    description: 'AI原生IDE，对话式生成与自动diff回退',
+    icon: '✨',
+    color: '#7c3aed',
+    category: '编程',
+    type: '独立IDE',
+    features: ['对话生成', '重构与调试', '项目级上下文'],
+    scenarios: '全栈开发、原型迭代'
+  },
+  {
+    name: 'Replit',
+    url: 'https://replit.com',
+    description: '浏览器IDE+AI，零配置协作与部署',
+    icon: '🌐',
+    color: '#ff6b6b',
+    category: '编程',
+    type: '浏览器IDE',
+    features: ['在线IDE', '协作共享', '自主错误检测'],
+    scenarios: '学生、快速原型、Web应用开发'
+  },
+  {
+    name: '通义灵码',
+    url: 'https://tongyi.aliyun.com/lingma/',
+    description: '阿里系中文原生代码助手',
+    icon: '🧠',
+    color: '#42d392',
+    category: '编程',
+    type: 'IDE插件',
+    features: ['代码生成', '重构与调试', '多IDE插件'],
+    scenarios: '阿里云生态集成、全栈开发'
+  },
+  {
+    name: 'Qoder AI IDE',
+    url: 'https://qoder.com/',
+    description: 'AI原生IDE，长任务规划与协同',
+    icon: '⚙️',
+    color: '#3b82f6',
+    category: '编程',
+    type: '独立IDE',
+    features: ['Quest规划', 'Repo文档', '本地+云协同'],
+    scenarios: '复杂项目、架构设计'
+  },
+  {
+    name: '通义百炼 + AgentScope',
+    url: 'https://bailian.aliyun.com/',
+    description: '多智能体编排与企业级Agent平台',
+    icon: '🛠️',
+    color: '#624aff',
+    category: '编程',
+    type: '平台/SDK',
+    features: ['Agent编排', '通义+第三方模型', 'SDK/Docker部署'],
+    scenarios: '企业级AI应用、多步骤任务'
+  },
+  {
+    name: 'CodeBuddy AI IDE',
+    url: 'https://www.codebuddy.ai/',
+    description: '腾讯云全栈AI IDE，微信生态深度集成',
+    icon: '🧰',
+    color: '#2962ff',
+    category: '编程',
+    type: '独立IDE',
+    features: ['前后端一体', 'BaaS集成', '设计稿转代码'],
+    scenarios: '小程序/公众号、全栈快速开发'
+  },
+  {
+    name: 'CloudBase AI CLI',
+    url: 'https://cloud.tencent.com/product/cloudbase',
+    description: '腾讯云命令行AI工作流，与云资源打通',
+    icon: '🖥️',
+    color: '#10b981',
+    category: '编程',
+    type: '终端工具',
+    features: ['自然语言调度', '云函数', '数据库与存储'],
+    scenarios: '终端爱好者、云原生开发'
+  },
+  {
+    name: '混元 Code 插件',
+    url: 'https://cloud.tencent.com/product/hunyuan-code',
+    description: '代码补全与重构，中文环境友好',
+    icon: '�',
+    color: '#3742fa',
+    category: '编程',
+    type: 'IDE插件',
+    features: ['代码补全', '解释说明', '重构'],
+    scenarios: '存量IDE用户、中文环境开发者'
+  },
+  {
+    name: 'Cline (VS Code)',
+    url: 'https://cline.ai',
+    description: 'IDE+终端一体，连接MCP生成与重构',
+    icon: '🧩',
+    color: '#2563eb',
+    category: '编程',
+    type: 'IDE插件',
+    features: ['MCP连接', '生成与补全', '代码重构'],
+    scenarios: 'VS Code用户、API开发'
+  },
+  {
+    name: 'GitHub Copilot',
+    url: 'https://github.com/features/copilot',
+    description: '成熟生态的代码补全与解释',
+    icon: '🐙',
+    color: '#0b5fff',
+    category: '编程',
+    type: 'IDE插件',
+    features: ['代码补全', '生成解释', '多语言支持'],
+    scenarios: '全栈开发者、存量项目维护'
+  },
+  {
+    name: 'vibe-coding-toolbox',
+    url: 'https://www.npmjs.com/package/vibe-coding-toolbox',
+    description: '提示增强与项目扫描的开源工具箱',
+    icon: '🧰',
+    color: '#a5a9ff',
+    category: '编程',
+    type: '终端工具',
+    features: ['提示增强', '项目扫描', '语义搜索'],
+    scenarios: '全栈开发者、项目梳理'
+  },
+  {
+    name: 'OpenCode',
+    url: 'https://opencode.ai/',
+    description: 'API驱动的代码生成与重构',
+    icon: '🔷',
+    color: '#1d9bf0',
+    category: '编程',
+    type: 'API/CLI',
+    features: ['生成与重构', '调试支持', 'API集成'],
+    scenarios: 'OpenAI生态用户、API驱动开发'
+  },
+  {
+    name: 'Warp',
+    url: 'https://www.warp.dev/',
+    description: '终端内集成AI，支持并行任务与文件操作',
+    icon: '⚡️',
+    color: '#ff9900',
+    category: '编程',
+    type: '终端工具',
+    features: ['读写文件', '并行任务', '错误检测'],
+    scenarios: '终端重度用户、全栈开发'
   }
 ]
 
@@ -290,6 +489,7 @@ const filteredTools = computed(() => {
             <div class="title-area">
               <h3>{{ tool.name }}</h3>
               <span class="category-tag">{{ tool.category }}</span>
+              <span v-if="tool.type" class="type-tag">{{ tool.type }}</span>
             </div>
           </div>
           
@@ -421,6 +621,17 @@ h3 {
   border-radius: 12px;
   color: #aaa;
   font-weight: 500;
+}
+
+.type-tag {
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 10px;
+  border-radius: 12px;
+  color: #bbb;
+  font-weight: 500;
+  margin-left: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .description {
