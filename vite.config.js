@@ -5,6 +5,8 @@ import path from 'path'
 export default defineConfig({
   plugins: [vue()],
   build: {
+    outDir: 'aiHelper360.com',
+    emptyOutDir: true,
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),

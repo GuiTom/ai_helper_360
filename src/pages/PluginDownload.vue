@@ -1,5 +1,5 @@
 <script setup>
-const downloadUrl = '/download/ai-chat-outline.zip'
+const downloadUrl = '/download/ai-chat-outline-1.0.1.zip'
 const features = [
   '在 AI 聊天页面右上角实时生成消息导航目录',
   '支持对当前会话的用户消息做分层结构索引',
@@ -41,7 +41,7 @@ const steps = [
       <div class="card">
         <h3>下载地址</h3>
         <p>
-          稳定版本：<a :href="downloadUrl" download>/download/ai-chat-outline.zip</a>
+          稳定版本：<a :href="downloadUrl" download>{{ downloadUrl }}</a>
         </p>
       </div>
     </section>

@@ -1,11 +1,11 @@
 <script setup>
-import AiToolsGrid from './components/AiToolsGrid.vue'
 </script>
 
 <template>
   <header>
     <nav class="top-nav">
-      <a class="nav-link" href="/outline_tool/index.html">Chrome 插件：AI Chat Outline 下载</a>
+      <RouterLink class="nav-link" to="/">首页</RouterLink>
+      <RouterLink class="nav-link" to="/outline_tool">Chrome 插件：AI Chat Outline 下载</RouterLink>
     </nav>
     <div class="logo-container">
       <h1>AI Helper 360</h1>
@@ -14,7 +14,7 @@ import AiToolsGrid from './components/AiToolsGrid.vue'
   </header>
 
   <main>
-    <AiToolsGrid />
+    <RouterView />
   </main>
 
   <footer>
@@ -35,6 +35,10 @@ header {
   position: absolute;
   top: 0.75rem;
   right: 2rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .nav-link {

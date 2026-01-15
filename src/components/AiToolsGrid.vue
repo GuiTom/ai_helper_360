@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-const categories = ['全部', '智能对话', 'AI Agent', '文生图', '文生音乐', '视频生成', '编程', 'UI 设计']
+const categories = ['全部', '智能对话', 'AI Agent', '文生图', '文本转语音', '文生音乐', '视频生成', '编程', 'UI 设计']
 const activeCategory = ref('全部')
 
 const tools = [
@@ -159,6 +159,46 @@ const tools = [
     features: ['中文理解', '修图扩图', '动效画板'],
     scenarios: '自媒体配图、快速中文创作、海报设计'
   },
+  {
+    name: 'ElevenLabs',
+    url: 'https://elevenlabs.io',
+    description: '极致真实感的文本转语音与声音克隆',
+    icon: '🎙️',
+    color: '#ff3b3b',
+    category: '文本转语音',
+    features: ['情感表达', '呼吸与语调', '声音克隆'],
+    scenarios: 'YouTube/B站视频配音、播客、有声书创作'
+  },
+  {
+    name: 'TTSMaker (马克配音)',
+    url: 'https://ttsmaker.com',
+    description: '中文支持出色，整合微软/谷歌，多风格直出MP3',
+    icon: '🔊',
+    color: '#10b981',
+    category: '文本转语音',
+    features: ['中文支持佳', '多模型整合', '风格丰富', 'MP3下载'],
+    scenarios: '短视频配音、广告旁白、商业演示'
+  },
+  {
+    name: 'Speechify',
+    url: 'https://speechify.com',
+    description: '高效文档与网页朗读，跨设备体验优秀',
+    icon: '📚',
+    color: '#4b90ff',
+    category: '文本转语音',
+    features: ['最高4.5倍速', '明星配音', 'Chrome插件', '移动端App'],
+    scenarios: '学生论文阅读、律师公文审阅、网页听书'
+  },
+  {
+    name: 'Murf.ai',
+    url: 'https://murf.ai',
+    description: '内置编辑与背景音乐库，适合视频剪辑',
+    icon: '🎤',
+    color: '#7c3aed',
+    category: '文本转语音',
+    features: ['语速音高控制', '重点词加重', '背景音乐库'],
+    scenarios: '企业培训视频、解说视频'
+  },
 
   {
     name: 'Suno',
@@ -261,6 +301,66 @@ const tools = [
     category: '视频生成',
     features: ['物理模拟', '写实风格', '快速迭代'],
     scenarios: '生活化场景模拟、写实短片、产品展示'
+  },
+  {
+    name: 'Pika',
+    url: 'https://pika.art',
+    description: '创意特效与模板的一键视频生成',
+    icon: '✨',
+    color: '#ff6bd6',
+    category: '视频生成',
+    features: ['文生视频', '图生视频', '特效模板', '局部重绘'],
+    scenarios: '动漫短片、社媒爆款特效、创意剪辑'
+  },
+  {
+    name: 'Vidu',
+    url: 'https://www.vidu.cn/',
+    description: '清华/生数联合的高一致性长视频生成',
+    icon: '🚀',
+    color: '#34a853',
+    category: '视频生成',
+    features: ['长时长', '主体一致性', '风格一致性', '性价比高'],
+    scenarios: '广告短片、影视级预告、动画制作'
+  },
+  {
+    name: 'PixVerse',
+    url: 'https://pixverse.ai/',
+    description: '中文友好，图生视频动作自然',
+    icon: '🌀',
+    color: '#2563eb',
+    category: '视频生成',
+    features: ['图生视频', '动作控制', '中文支持'],
+    scenarios: '电商模特动效、社媒素材、创意短视频'
+  },
+  {
+    name: 'HeyGen',
+    url: 'https://www.heygen.com/',
+    description: '数字人播报与口型同步的视频生成',
+    icon: '🗣️',
+    color: '#ff9900',
+    category: '视频生成',
+    features: ['数字人', '多语言配音', '口型匹配'],
+    scenarios: '企业宣传、课程录播、新闻播报'
+  },
+  {
+    name: 'Viggle AI',
+    url: 'https://viggle.ai/',
+    description: '静态人物驱动与动作库生成动画',
+    icon: '🕺',
+    color: '#e91e63',
+    category: '视频生成',
+    features: ['驱动静态图', '动作模板', '角色动效'],
+    scenarios: '虚拟偶像、动画创作、社媒特效'
+  },
+  {
+    name: 'LiblibAI',
+    url: 'https://www.liblib.ai/',
+    description: '多模型聚合的视频生成与特效平台',
+    icon: '🧰',
+    color: '#42d392',
+    category: '视频生成',
+    features: ['多模型整合', '模板一键', '特效库', '中文提示优化'],
+    scenarios: '多场景短视频、营销素材、换装跳舞'
   },
 
   // 编程
