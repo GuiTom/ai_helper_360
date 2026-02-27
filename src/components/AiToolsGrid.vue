@@ -243,6 +243,26 @@ const tools = [
 
   // 视频生成
   {
+    name: '即梦 AI',
+    url: 'https://jimeng.jianying.com/',
+    description: '字节出品，智能画布与视频生成',
+    icon: '☁️',
+    color: '#ff4757',
+    category: '视频生成',
+    features: ['文/图生视频', '运动笔刷', '运镜控制'],
+    scenarios: '自媒体短片、动态海报、创意视频'
+  },
+  {
+    name: '小云雀',
+    url: 'https://xyq.jianying.com/',
+    description: '剪映出品，一句话生成爆款视频',
+    icon: '🐦',
+    color: '#4facfe',
+    category: '视频生成',
+    features: ['智能成片', '爆款复刻', '数字人口播'],
+    scenarios: '短视频运营、电商带货、口播视频'
+  },
+  {
     name: 'Sora',
     url: 'https://openai.com/sora',
     description: '世界模拟器，分钟级长视频',
@@ -601,7 +621,7 @@ const filteredTools = computed(() => {
     <div class="grid-container">
       <a 
         v-for="tool in filteredTools" 
-        :key="tool.name" 
+        :key="tool.name + tool.category" 
         :href="tool.url" 
         target="_blank" 
         class="card"
