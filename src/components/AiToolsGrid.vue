@@ -1,7 +1,17 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-const categories = ['全部', '智能对话', 'AI Agent', '文生图', '文本转语音', '文生音乐', '视频生成', '编程', 'UI 设计']
+const categories = [
+  { name: '全部', icon: '🌐' },
+  { name: '智能对话', icon: '💬' },
+  { name: 'AI Agent', icon: '🤖' },
+  { name: '文生图', icon: '🎨' },
+  { name: '文本转语音', icon: '🗣️' },
+  { name: '文生音乐', icon: '🎵' },
+  { name: '视频生成', icon: '🎥' },
+  { name: '编程', icon: '💻' },
+  { name: 'UI 设计', icon: '✨' }
+]
 const activeCategory = ref('全部')
 
 const tools = [
@@ -630,11 +640,12 @@ const filteredTools = computed(() => {
     <div class="tabs">
       <button 
         v-for="cat in categories" 
-        :key="cat"
-        :class="['tab-btn', { active: activeCategory === cat }]"
-        @click="activeCategory = cat"
+        :key="cat.name"
+        :class="['tab-btn', { active: activeCategory === cat.name }]"
+        @click="activeCategory = cat.name"
       >
-        {{ cat }}
+        <span class="category-icon">{{ cat.icon }}</span>
+        {{ cat.name }}
       </button>
     </div>
 
@@ -699,6 +710,14 @@ const filteredTools = computed(() => {
   font-size: 1rem;
   font-weight: 500;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category-icon {
+  font-size: 1.1em;
+  line-height: 1;
 }
 
 .tab-btn:hover {
