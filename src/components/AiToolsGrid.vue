@@ -117,6 +117,26 @@ const tools = [
     features: ['可视化工作流', '插件生态', '跨平台发布'],
     scenarios: '企业智能体搭建、业务流程自动化、数据协同'
   },
+  {
+    name: 'OpenClaw',
+    url: 'https://openclaw.ai/',
+    description: '开源个人 AI 助手，连接工具与数据',
+    icon: '🤖',
+    color: '#00d2d3',
+    category: 'AI Agent',
+    features: ['本地运行', '多 Agent 协作', '工具调用'],
+    scenarios: '个人助理、自动化任务、工作流编排'
+  },
+  {
+    name: '影刀 RPA',
+    url: 'https://www.yingdao.com/',
+    description: '桌面与手机自动化机器人，模拟人工操作',
+    icon: '🗡️',
+    color: '#ff9f43',
+    category: 'AI Agent',
+    features: ['可视化流程', '桌面/手机自动化', 'AI 集成'],
+    scenarios: '电商运营、财务对账、数据抓取'
+  },
 
   // 文生图
   {
