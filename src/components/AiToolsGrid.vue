@@ -4,15 +4,29 @@ import { ref, computed } from 'vue'
 const categories = [
   { name: '全部', icon: '🌐' },
   { name: '智能对话', icon: '💬' },
-  { name: 'AI Agent', icon: '🤖' },
+  { name: 'AI Agent 自动化', icon: '🤖' },
   { name: '文生图', icon: '🎨' },
   { name: '文本转语音', icon: '🗣️' },
-  { name: '文生音乐', icon: '🎵' },
+  { name: '音乐创作', icon: '🎵' },
   { name: '视频生成', icon: '🎥' },
   { name: '编程', icon: '💻' },
   { name: 'UI 设计', icon: '✨' }
 ]
 const activeCategory = ref('全部')
+
+const filters = [
+  { label: '免费试用', value: 'isFree', icon: '🆓' },
+  { label: '国内直连', value: 'isCN', icon: '🇨🇳' }
+]
+const activeFilters = ref([])
+
+const toggleFilter = (value) => {
+  if (activeFilters.value.includes(value)) {
+    activeFilters.value = activeFilters.value.filter(item => item !== value)
+  } else {
+    activeFilters.value.push(value)
+  }
+}
 
 const tools = [
   // 智能对话
@@ -24,7 +38,9 @@ const tools = [
     color: '#74aa9c',
     category: '智能对话',
     features: ['语义理解强', '多模态', '代码生成'],
-    scenarios: '复杂任务处理、创意写作、编程辅助'
+    scenarios: '复杂任务处理、创意写作、编程辅助',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'Gemini',
@@ -34,7 +50,9 @@ const tools = [
     color: '#4b90ff',
     category: '智能对话',
     features: ['原生多模态', '谷歌生态集成', '长文本分析'],
-    scenarios: '文档分析、数据处理、跨应用协作'
+    scenarios: '文档分析、数据处理、跨应用协作',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'Claude',
@@ -44,7 +62,9 @@ const tools = [
     color: '#d97757',
     category: '智能对话',
     features: ['超长上下文', '逻辑推理', '拟人化'],
-    scenarios: '论文阅读、代码架构分析、自然对话'
+    scenarios: '论文阅读、代码架构分析、自然对话',
+    isFree: true,
+    isCN: false
   },
   {
     name: '豆包',
@@ -54,7 +74,9 @@ const tools = [
     color: '#4080ff',
     category: '智能对话',
     features: ['语音交互', '实时搜索', '多智能体'],
-    scenarios: '日常问答、口语练习、信息检索'
+    scenarios: '日常问答、口语练习、信息检索',
+    isFree: true,
+    isCN: true
   },
   {
     name: '通义千问',
@@ -64,7 +86,9 @@ const tools = [
     color: '#624aff',
     category: '智能对话',
     features: ['文档解析', '图片理解', '长文档处理'],
-    scenarios: '办公文档处理、数据分析、行业应用'
+    scenarios: '办公文档处理、数据分析、行业应用',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'DeepSeek',
@@ -74,7 +98,9 @@ const tools = [
     color: '#4e6ef2',
     category: '智能对话',
     features: ['开源模型', '代码能力强', '数学推理'],
-    scenarios: '学术研究、代码开发、逻辑推理'
+    scenarios: '学术研究、代码开发、逻辑推理',
+    isFree: true,
+    isCN: true
   },
   {
     name: '文心一言',
@@ -84,7 +110,9 @@ const tools = [
     color: '#2962ff',
     category: '智能对话',
     features: ['中文理解', '知识增强', '多模态生成'],
-    scenarios: '中文创作、知识问答、商业文案'
+    scenarios: '中文创作、知识问答、商业文案',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'Kimi',
@@ -94,7 +122,9 @@ const tools = [
     color: '#00d3ff',
     category: '智能对话',
     features: ['超长无损记忆', '联网搜索', '文件解读'],
-    scenarios: '长篇财报分析、法律合同审查、资料整理'
+    scenarios: '长篇财报分析、法律合同审查、资料整理',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'Grok',
@@ -104,7 +134,9 @@ const tools = [
     color: '#1d9bf0',
     category: '智能对话',
     features: ['多模态', '联网搜索', '编程辅助'],
-    scenarios: '日常问答、图文理解、代码开发'
+    scenarios: '日常问答、图文理解、代码开发',
+    isFree: false,
+    isCN: false
   },
 
   {
@@ -115,7 +147,9 @@ const tools = [
     color: '#00bcd4',
     category: 'AI Agent',
     features: ['自主执行', '任务规划', '工具调用'],
-    scenarios: '工作流自动化、应用构建、复杂任务协作'
+    scenarios: '工作流自动化、应用构建、复杂任务协作',
+    isFree: false,
+    isCN: false
   },
   {
     name: 'Coze',
@@ -125,7 +159,9 @@ const tools = [
     color: '#ff6b6b',
     category: 'AI Agent',
     features: ['可视化工作流', '插件生态', '跨平台发布'],
-    scenarios: '企业智能体搭建、业务流程自动化、数据协同'
+    scenarios: '企业智能体搭建、业务流程自动化、数据协同',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'OpenClaw',
@@ -135,7 +171,9 @@ const tools = [
     color: '#00d2d3',
     category: 'AI Agent',
     features: ['本地运行', '多 Agent 协作', '工具调用'],
-    scenarios: '个人助理、自动化任务、工作流编排'
+    scenarios: '个人助理、自动化任务、工作流编排',
+    isFree: true,
+    isCN: true
   },
   {
     name: '影刀 RPA',
@@ -145,7 +183,9 @@ const tools = [
     color: '#ff9f43',
     category: 'AI Agent',
     features: ['可视化流程', '桌面/手机自动化', 'AI 集成'],
-    scenarios: '电商运营、财务对账、数据抓取'
+    scenarios: '电商运营、财务对账、数据抓取',
+    isFree: true,
+    isCN: true
   },
 
   // 文生图
@@ -157,7 +197,9 @@ const tools = [
     color: '#f0f',
     category: '文生图',
     features: ['艺术风格', '光影构图', '高质量细节'],
-    scenarios: '高端插画、商业摄影、UI/UX 设计构思'
+    scenarios: '高端插画、商业摄影、UI/UX 设计构思',
+    isFree: false,
+    isCN: false
   },
   {
     name: 'DALL-E 3',
@@ -167,7 +209,9 @@ const tools = [
     color: '#ff9900',
     category: '文生图',
     features: ['语义精准', '对话式修改', '易用性'],
-    scenarios: '头脑风暴、概念图设计、快速配图'
+    scenarios: '头脑风暴、概念图设计、快速配图',
+    isFree: false,
+    isCN: false
   },
   {
     name: 'Stable Diffusion',
@@ -177,7 +221,9 @@ const tools = [
     color: '#7f5af0',
     category: '文生图',
     features: ['ControlNet', '本地部署', '高度定制'],
-    scenarios: '电商模特替换、建筑效果图、角色定制'
+    scenarios: '电商模特替换、建筑效果图、角色定制',
+    isFree: true,
+    isCN: true
   },
   {
     name: '即梦 AI',
@@ -187,7 +233,9 @@ const tools = [
     color: '#ff4757',
     category: '文生图',
     features: ['中文理解', '修图扩图', '动效画板'],
-    scenarios: '自媒体配图、快速中文创作、海报设计'
+    scenarios: '自媒体配图、快速中文创作、海报设计',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'ElevenLabs',
@@ -197,7 +245,9 @@ const tools = [
     color: '#ff3b3b',
     category: '文本转语音',
     features: ['情感表达', '呼吸与语调', '声音克隆'],
-    scenarios: 'YouTube/B站视频配音、播客、有声书创作'
+    scenarios: 'YouTube/B站视频配音、播客、有声书创作',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'TTSMaker (马克配音)',
@@ -207,7 +257,9 @@ const tools = [
     color: '#10b981',
     category: '文本转语音',
     features: ['中文支持佳', '多模型整合', '风格丰富', 'MP3下载'],
-    scenarios: '短视频配音、广告旁白、商业演示'
+    scenarios: '短视频配音、广告旁白、商业演示',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'Speechify',
@@ -217,7 +269,9 @@ const tools = [
     color: '#4b90ff',
     category: '文本转语音',
     features: ['最高4.5倍速', '明星配音', 'Chrome插件', '移动端App'],
-    scenarios: '学生论文阅读、律师公文审阅、网页听书'
+    scenarios: '学生论文阅读、律师公文审阅、网页听书',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'Murf.ai',
@@ -227,7 +281,9 @@ const tools = [
     color: '#7c3aed',
     category: '文本转语音',
     features: ['语速音高控制', '重点词加重', '背景音乐库'],
-    scenarios: '企业培训视频、解说视频'
+    scenarios: '企业培训视频、解说视频',
+    isFree: true,
+    isCN: false
   },
 
   {
@@ -238,7 +294,9 @@ const tools = [
     color: '#e91e63',
     category: '文生音乐',
     features: ['文生音乐', '人声合成', '风格多样'],
-    scenarios: '短视频配乐、原创歌曲、广告音效'
+    scenarios: '短视频配乐、原创歌曲、广告音效',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'Udio',
@@ -248,7 +306,9 @@ const tools = [
     color: '#3b82f6',
     category: '文生音乐',
     features: ['一键生成', '歌词旋律', '高保真'],
-    scenarios: '音乐创作草稿、播客片头、社媒内容'
+    scenarios: '音乐创作草稿、播客片头、社媒内容',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'Mureka',
@@ -258,7 +318,9 @@ const tools = [
     color: '#10b981',
     category: '文生音乐',
     features: ['文生音乐', '人声合成', '可商用'],
-    scenarios: '版权安全配乐、风格化音轨、专业混音素材'
+    scenarios: '版权安全配乐、风格化音轨、专业混音素材',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'Boomy',
@@ -268,7 +330,9 @@ const tools = [
     color: '#8b5cf6',
     category: '文生音乐',
     features: ['快速创作', '风格模板', '平台分发'],
-    scenarios: '个人创作、独立音乐发行、背景音乐'
+    scenarios: '个人创作、独立音乐发行、背景音乐',
+    isFree: true,
+    isCN: false
   },
 
   // 视频生成
@@ -280,7 +344,9 @@ const tools = [
     color: '#ff4757',
     category: '视频生成',
     features: ['文/图生视频', '运动笔刷', '运镜控制'],
-    scenarios: '自媒体短片、动态海报、创意视频'
+    scenarios: '自媒体短片、动态海报、创意视频',
+    isFree: true,
+    isCN: true
   },
   {
     name: '小云雀',
@@ -290,7 +356,9 @@ const tools = [
     color: '#4facfe',
     category: '视频生成',
     features: ['智能成片', '爆款复刻', '数字人口播'],
-    scenarios: '短视频运营、电商带货、口播视频'
+    scenarios: '短视频运营、电商带货、口播视频',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'Sora',
@@ -300,7 +368,9 @@ const tools = [
     color: '#000',
     category: '视频生成',
     features: ['超长视频', '物理规律', '多镜头一致性'],
-    scenarios: '电影短片、复杂叙事视频、创意广告'
+    scenarios: '电影短片、复杂叙事视频、创意广告',
+    isFree: false,
+    isCN: false
   },
   {
     name: '海螺 AI',
@@ -310,7 +380,9 @@ const tools = [
     color: '#2ed573',
     category: '视频生成',
     features: ['大幅度动作', '表情捕捉', '高清画质'],
-    scenarios: '舞蹈视频、动作戏、夸张表情模拟'
+    scenarios: '舞蹈视频、动作戏、夸张表情模拟',
+    isFree: true,
+    isCN: true
   },
   {
     name: '智谱清影',
@@ -320,7 +392,9 @@ const tools = [
     color: '#3742fa',
     category: '视频生成',
     features: ['快速生成', '图生视频', '多风格'],
-    scenarios: '快速素材产出、自媒体初剪、新闻配图'
+    scenarios: '快速素材产出、自媒体初剪、新闻配图',
+    isFree: true,
+    isCN: true
   },
   {
     name: '可灵 AI',
@@ -330,7 +404,9 @@ const tools = [
     color: '#ffa502',
     category: '视频生成',
     features: ['人脸保真', '动作流畅', '长视频'],
-    scenarios: '让照片说话、老照片修复、生活化场景'
+    scenarios: '让照片说话、老照片修复、生活化场景',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'Runway',
@@ -340,7 +416,9 @@ const tools = [
     color: '#ff6b81',
     category: '视频生成',
     features: ['运动笔刷', '局部控制', '影视特效'],
-    scenarios: '专业影视特效、局部动态控制、创意转场'
+    scenarios: '专业影视特效、局部动态控制、创意转场',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'Luma Dream Machine',
@@ -350,7 +428,9 @@ const tools = [
     color: '#70a1ff',
     category: '视频生成',
     features: ['物理模拟', '写实风格', '快速迭代'],
-    scenarios: '生活化场景模拟、写实短片、产品展示'
+    scenarios: '生活化场景模拟、写实短片、产品展示',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'Pika',
@@ -360,7 +440,9 @@ const tools = [
     color: '#ff6bd6',
     category: '视频生成',
     features: ['文生视频', '图生视频', '特效模板', '局部重绘'],
-    scenarios: '动漫短片、社媒爆款特效、创意剪辑'
+    scenarios: '动漫短片、社媒爆款特效、创意剪辑',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'Vidu',
@@ -370,7 +452,9 @@ const tools = [
     color: '#34a853',
     category: '视频生成',
     features: ['长时长', '主体一致性', '风格一致性', '性价比高'],
-    scenarios: '广告短片、影视级预告、动画制作'
+    scenarios: '广告短片、影视级预告、动画制作',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'PixVerse',
@@ -380,7 +464,9 @@ const tools = [
     color: '#2563eb',
     category: '视频生成',
     features: ['图生视频', '动作控制', '中文支持'],
-    scenarios: '电商模特动效、社媒素材、创意短视频'
+    scenarios: '电商模特动效、社媒素材、创意短视频',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'HeyGen',
@@ -390,7 +476,9 @@ const tools = [
     color: '#ff9900',
     category: '视频生成',
     features: ['数字人', '多语言配音', '口型匹配'],
-    scenarios: '企业宣传、课程录播、新闻播报'
+    scenarios: '企业宣传、课程录播、新闻播报',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'Viggle AI',
@@ -400,7 +488,9 @@ const tools = [
     color: '#e91e63',
     category: '视频生成',
     features: ['驱动静态图', '动作模板', '角色动效'],
-    scenarios: '虚拟偶像、动画创作、社媒特效'
+    scenarios: '虚拟偶像、动画创作、社媒特效',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'LiblibAI',
@@ -410,7 +500,9 @@ const tools = [
     color: '#42d392',
     category: '视频生成',
     features: ['多模型整合', '模板一键', '特效库', '中文提示优化'],
-    scenarios: '多场景短视频、营销素材、换装跳舞'
+    scenarios: '多场景短视频、营销素材、换装跳舞',
+    isFree: true,
+    isCN: true
   },
 
   // 编程
@@ -423,7 +515,9 @@ const tools = [
     category: '编程',
     type: '终端工具',
     features: ['项目构建', '脚本生成', '自动化任务'],
-    scenarios: '命令行爱好者、自动化任务开发'
+    scenarios: '命令行爱好者、自动化任务开发',
+    isFree: false,
+    isCN: false
   },
   {
     name: 'Antigravity',
@@ -434,7 +528,9 @@ const tools = [
     category: '编程',
     type: '独立IDE',
     features: ['双界面', '多模型支持', '并行编排'],
-    scenarios: '大项目/多任务并行、Google生态'
+    scenarios: '大项目/多任务并行、Google生态',
+    isFree: false,
+    isCN: false
   },
   {
     name: 'Trae.ai',
@@ -445,7 +541,9 @@ const tools = [
     category: '编程',
     type: '独立IDE',
     features: ['对话式改代码', 'API集成', '中文友好'],
-    scenarios: '国内开发者、快速迭代项目'
+    scenarios: '国内开发者、快速迭代项目',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'Windsurf',
@@ -456,7 +554,9 @@ const tools = [
     category: '编程',
     type: '独立IDE',
     features: ['智能补全', '内联编辑', '多智能体协作'],
-    scenarios: '复杂项目、架构设计'
+    scenarios: '复杂项目、架构设计',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'Cursor',
@@ -467,7 +567,9 @@ const tools = [
     category: '编程',
     type: '独立IDE',
     features: ['对话生成', '重构与调试', '项目级上下文'],
-    scenarios: '全栈开发、原型迭代'
+    scenarios: '全栈开发、原型迭代',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'Replit',
@@ -478,7 +580,9 @@ const tools = [
     category: '编程',
     type: '浏览器IDE',
     features: ['在线IDE', '协作共享', '自主错误检测'],
-    scenarios: '学生、快速原型、Web应用开发'
+    scenarios: '学生、快速原型、Web应用开发',
+    isFree: true,
+    isCN: false
   },
   {
     name: '通义灵码',
@@ -489,7 +593,9 @@ const tools = [
     category: '编程',
     type: 'IDE插件',
     features: ['代码生成', '重构与调试', '多IDE插件'],
-    scenarios: '阿里云生态集成、全栈开发'
+    scenarios: '阿里云生态集成、全栈开发',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'Qoder AI IDE',
@@ -500,7 +606,9 @@ const tools = [
     category: '编程',
     type: '独立IDE',
     features: ['Quest规划', 'Repo文档', '本地+云协同'],
-    scenarios: '复杂项目、架构设计'
+    scenarios: '复杂项目、架构设计',
+    isFree: true,
+    isCN: false
   },
   {
     name: '通义百炼 + AgentScope',
@@ -511,7 +619,9 @@ const tools = [
     category: '编程',
     type: '平台/SDK',
     features: ['Agent编排', '通义+第三方模型', 'SDK/Docker部署'],
-    scenarios: '企业级AI应用、多步骤任务'
+    scenarios: '企业级AI应用、多步骤任务',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'CodeBuddy AI IDE',
@@ -522,7 +632,9 @@ const tools = [
     category: '编程',
     type: '独立IDE',
     features: ['前后端一体', 'BaaS集成', '设计稿转代码'],
-    scenarios: '小程序/公众号、全栈快速开发'
+    scenarios: '小程序/公众号、全栈快速开发',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'CloudBase AI CLI',
@@ -533,7 +645,9 @@ const tools = [
     category: '编程',
     type: '终端工具',
     features: ['自然语言调度', '云函数', '数据库与存储'],
-    scenarios: '终端爱好者、云原生开发'
+    scenarios: '终端爱好者、云原生开发',
+    isFree: true,
+    isCN: true
   },
   {
     name: '混元 Code 插件',
@@ -544,7 +658,9 @@ const tools = [
     category: '编程',
     type: 'IDE插件',
     features: ['代码补全', '解释说明', '重构'],
-    scenarios: '存量IDE用户、中文环境开发者'
+    scenarios: '存量IDE用户、中文环境开发者',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'Cline (VS Code)',
@@ -555,7 +671,9 @@ const tools = [
     category: '编程',
     type: 'IDE插件',
     features: ['MCP连接', '生成与补全', '代码重构'],
-    scenarios: 'VS Code用户、API开发'
+    scenarios: 'VS Code用户、API开发',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'GitHub Copilot',
@@ -566,7 +684,9 @@ const tools = [
     category: '编程',
     type: 'IDE插件',
     features: ['代码补全', '生成解释', '多语言支持'],
-    scenarios: '全栈开发者、存量项目维护'
+    scenarios: '全栈开发者、存量项目维护',
+    isFree: false,
+    isCN: false
   },
   {
     name: 'vibe-coding-toolbox',
@@ -577,7 +697,9 @@ const tools = [
     category: '编程',
     type: '终端工具',
     features: ['提示增强', '项目扫描', '语义搜索'],
-    scenarios: '全栈开发者、项目梳理'
+    scenarios: '全栈开发者、项目梳理',
+    isFree: true,
+    isCN: true
   },
   {
     name: 'OpenCode',
@@ -588,7 +710,9 @@ const tools = [
     category: '编程',
     type: 'API/CLI',
     features: ['生成与重构', '调试支持', 'API集成'],
-    scenarios: 'OpenAI生态用户、API驱动开发'
+    scenarios: 'OpenAI生态用户、API驱动开发',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'Warp',
@@ -599,12 +723,10 @@ const tools = [
     category: '编程',
     type: '终端工具',
     features: ['读写文件', '并行任务', '错误检测'],
-    scenarios: '终端重度用户、全栈开发'
-  }
-]
-
-// UI 设计
-tools.push(
+    scenarios: '终端重度用户、全栈开发',
+    isFree: true,
+    isCN: false
+  },
   {
     name: 'UI UX Pro Max',
     url: 'https://ui-ux-pro-max-skill.nextlevelbuilder.io/',
@@ -613,7 +735,9 @@ tools.push(
     color: '#ff6b6b',
     category: 'UI 设计',
     features: ['设计智能', '样式库', '配色推荐'],
-    scenarios: '生成高质量界面、风格选型、设计规范'
+    scenarios: '生成高质量界面、风格选型、设计规范',
+    isFree: true,
+    isCN: false
   },
   {
     name: 'Stitch',
@@ -623,20 +747,47 @@ tools.push(
     color: '#1d9bf0',
     category: 'UI 设计',
     features: ['设计系统', '组件库', '最佳实践'],
-    scenarios: '快速搭建一致性 UI'
+    scenarios: '快速搭建一致性 UI',
+    isFree: true,
+    isCN: false
   }
-)
+]
 
 const filteredTools = computed(() => {
-  if (activeCategory.value === '全部') {
-    return tools
+  let result = tools
+  
+  // 1. Category Filter
+  if (activeCategory.value !== '全部') {
+    result = result.filter(tool => tool.category === activeCategory.value)
   }
-  return tools.filter(tool => tool.category === activeCategory.value)
+  
+  // 2. Attribute Filter
+  if (activeFilters.value.length > 0) {
+    result = result.filter(tool => {
+      return activeFilters.value.every(filterKey => tool[filterKey])
+    })
+  }
+  
+  return result
 })
 </script>
 
 <template>
   <div class="container">
+    <!-- 顶部过滤区 -->
+    <div class="filter-container">
+      <div 
+        v-for="filter in filters" 
+        :key="filter.value"
+        class="filter-tag"
+        :class="{ active: activeFilters.includes(filter.value) }"
+        @click="toggleFilter(filter.value)"
+      >
+        <span class="filter-icon">{{ filter.icon }}</span>
+        {{ filter.label }}
+      </div>
+    </div>
+
     <div class="tabs">
       <button 
         v-for="cat in categories" 
@@ -674,6 +825,9 @@ const filteredTools = computed(() => {
             <span v-for="feature in tool.features" :key="feature" class="tag">
               {{ feature }}
             </span>
+            <!-- 显示额外的标签信息 (可选，增加可视化) -->
+            <span v-if="tool.isFree" class="tag extra-tag">免费试用</span>
+            <span v-if="tool.isCN" class="tag extra-tag">国内直连</span>
           </div>
         </div>
 
@@ -690,6 +844,45 @@ const filteredTools = computed(() => {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* 过滤标签样式 */
+.filter-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #888;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+.filter-tag:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.filter-tag.active {
+  background: rgba(100, 108, 255, 0.15);
+  color: #a5a9ff;
+  border-color: rgba(100, 108, 255, 0.3);
+  font-weight: 500;
+}
+
+.filter-icon {
+  font-size: 1.1em;
 }
 
 .tabs {
@@ -841,9 +1034,20 @@ h3 {
   border: 1px solid rgba(100, 108, 255, 0.1);
 }
 
+.extra-tag {
+  background: rgba(66, 211, 146, 0.1);
+  color: #42d392;
+  border-color: rgba(66, 211, 146, 0.2);
+}
+
 .card:hover .tag {
   background: rgba(100, 108, 255, 0.2);
   border-color: rgba(100, 108, 255, 0.3);
+}
+
+.card:hover .extra-tag {
+  background: rgba(66, 211, 146, 0.2);
+  border-color: rgba(66, 211, 146, 0.3);
 }
 
 .scenarios {
@@ -903,9 +1107,20 @@ h3 {
     border-color: #dbeafe;
   }
   
+  .extra-tag {
+    background: #ecfdf5;
+    color: #059669;
+    border-color: #d1fae5;
+  }
+  
   .card:hover .tag {
     background: #dbeafe;
     border-color: #bfdbfe;
+  }
+
+  .card:hover .extra-tag {
+    background: #d1fae5;
+    border-color: #a7f3d0;
   }
   
   .scenarios {
@@ -916,6 +1131,22 @@ h3 {
   
   .scenarios strong {
     color: #374151;
+  }
+
+  .filter-tag {
+    background: rgba(0, 0, 0, 0.05);
+    color: #666;
+  }
+  
+  .filter-tag:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #333;
+  }
+  
+  .filter-tag.active {
+    background: #eff6ff;
+    color: #2563eb;
+    border-color: #dbeafe;
   }
 }
 </style>
